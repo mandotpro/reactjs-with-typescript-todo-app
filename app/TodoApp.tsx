@@ -6,9 +6,10 @@ import {TodoList} from './TodoList';
 import {TodoFilter} from './TodoFilter';
 
 import { TOGGLE_TODO, ADD_TODO, APPLY_FILTER, DELETE_TODO } from "./actions/todo.action";
+import { IState } from "./interfaces/IState";
 
 class TodoApp extends React.Component<any, {}> {
-    constructor(props : {}) {
+    constructor(props: IState) {
         super(props);
     }
 
@@ -22,8 +23,8 @@ class TodoApp extends React.Component<any, {}> {
           <div>
             <input data-test-id="addNewTodoInput" type="text" ref="todoTextInputRef"/>
             <button data-test-id="addNewTodoBtn" onClick={this.addTodoHandler.bind(this)}>Add</button>
-            <TodoList todos={this.props.todos} onClick={this.props.todoClickHandler} onDelete={this.props.deleteTodoHandler} />
-            <TodoFilter onFilter={this.props.filterTodos} />
+            <TodoList filter={this.props.filter} todos={this.props.todos} onClick={this.props.todoClickHandler} onDelete={this.props.deleteTodoHandler} />
+            <TodoFilter filter={this.props.filter} onFilter={this.props.filterTodos} />
           </div>
         )
     }
