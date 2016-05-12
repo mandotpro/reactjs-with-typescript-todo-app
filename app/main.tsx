@@ -6,8 +6,19 @@ import { createStore } from 'redux'
 
 import appState from './reducers/index';
 import TodoApp from './TodoApp';
+import TodoModel from "./models/Todo.model";
 
-let store = createStore(appState);
+
+let initialState : {todos: TodoModel[]} = {
+    todos: [
+        new TodoModel('Emo', false),
+        new TodoModel('Angel', false),
+        new TodoModel('Joro', true),
+        new TodoModel('Reuf', false)
+    ]
+};
+
+let store = createStore(appState, initialState);
 
 ReactDOM.render(
     <Provider store={store}>

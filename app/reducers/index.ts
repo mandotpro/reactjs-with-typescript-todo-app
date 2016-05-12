@@ -1,33 +1,11 @@
 import { combineReducers } from 'redux';
-import TodoModel from '../models/Todo.model';
 
-let initialState:{todos: TodoModel[]} = {
-    todos: [
-        new TodoModel('Emo', false),
-        new TodoModel('Angel', false),
-        new TodoModel('Joro', true),
-        new TodoModel('Reuf', false)
-    ]
-};
+import { TodosReducer } from './todos.reducer';
+import { FilterReducer } from './filter.reducer';
 
-const appState = ( state=initialState, action ) => {
-    switch (action.type) {
-        case 'TOGGLE_TODO':
-            return Object.assign({}, state, {
-                todos: state.todos.map((todo, index) => {
-                    if(index === action.index) {
-                        return new TodoModel(todo.text, !todo.isCompleted);
-                    }
-                    return todo;
-                })
-            });
-        case 'ADD_TODO':
-            return Object.assign({}, state, {
-                todos: [...state.todos, new TodoModel(action.value, false)]
-            });
-        default:
-            return state;
-    }
-};
+const appState = combineReducers({
+   todos: TodosReducer,
+   filter: FilterReducer
+});
 
 export default appState

@@ -4,7 +4,8 @@ import TodoModel from './models/Todo.model';
 
 interface IProps {
     todos: TodoModel[],
-    onClick: Function
+    onClick: Function,
+    onDelete: Function
 }
 
 export class TodoList extends Component<IProps, {}> {
@@ -16,8 +17,14 @@ export class TodoList extends Component<IProps, {}> {
         return (
             <ul>
                 {this.props.todos.map( (todo, index) => {
-                    let style = {textDecoration: todo.isCompleted ? 'line-through' : 'none'};
-                    return <li key={index} style={style} onClick={this.props.onClick.bind(null, index)}>{todo.text}</li>
+                    let style = {textDecoration: todo.isCompleted ? 'line-through' : 'none', cursor: 'pointer'};
+                    let deleteButtonStyle = {'cursor': 'pointer', 'marginLeft': '5px', 'color': 'red'};
+                    return (
+                        <li key={index}>
+                            <span data-test-id={'todoItem-'+index} style={style} onClick={this.props.onClick.bind(null, index)} >{todo.text}</span> 
+                            <span style={deleteButtonStyle} onClick={this.props.onDelete.bind(null,index)}>X</span>
+                        </li>
+                    )
                 })}
             </ul>
         )
