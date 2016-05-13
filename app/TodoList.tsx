@@ -32,7 +32,7 @@ export class TodoList extends Component<IProps, {}> {
                     return (
                         <li key={index}>
                             <span data-test-id={'todoItem-'+index} style={style} onClick={this.props.onClick.bind(null, index)} >{todo.text}</span> 
-                            <span style={deleteButtonStyle} onClick={this.props.onDelete.bind(null,index)}>X</span>
+                            <span data-test-id={'todoDeleteItem-'+index} style={deleteButtonStyle} onClick={this.props.onDelete.bind(null,index)}>X</span>
                         </li>
                     )
                 })}

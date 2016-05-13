@@ -10,12 +10,7 @@ import TodoModel from "./models/Todo.model";
 
 
 let initialState : {todos: TodoModel[]} = {
-    todos: [
-        new TodoModel('Emo', false),
-        new TodoModel('Angel', false),
-        new TodoModel('Joro', true),
-        new TodoModel('Reuf', false)
-    ]
+    todos: []
 };
 
 let store = createStore(appState, initialState);
